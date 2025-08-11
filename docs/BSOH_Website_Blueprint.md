@@ -130,7 +130,7 @@ cd ~/proj/bsohsite/repo                # Navigate to local project root
 cp ~/proj/bsohsite/notes/gitassets/Drupal8-adapted.gitignore .gitignore
 git add .gitignore
 git commit -m "Add initial .gitignore (GitHub Drupal template, adapted for Drupal 10 + Composer + DDEV; BSOH notes included)"
-git push -u origin main
+git push --set-upstream origin main    # (-u) Push to origin/main and set it as the upstream branch for local 'main'
 ```
 
 ---
