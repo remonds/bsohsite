@@ -1,0 +1,99 @@
+# GitHub gitignore template for Drupal 8 projects
+# https://github.com/github/gitignore/blob/main/Drupal.gitignore
+#
+# earlier versions of Drupal are tracked in `community/PHP/`
+#
+# follows official upstream conventions:
+# https://www.drupal.org/docs/develop/using-composer
+# 
+# Adapted for Drupal 10 Composer-based project structure with DDEV, for BSOH
+
+# Ignore configuration files that may contain sensitive information
+/web/sites/*/*settings*.php
+/web/sites/*/*services*.yml
+
+# Ignore paths that may contain user-generated content
+/web/sites/*/files
+/web/sites/*/public
+/web/sites/*/private
+/web/sites/*/files-public
+/web/sites/*/files-private
+
+# Ignore paths that may contain temporary files
+/web/sites/*/translations
+/web/sites/*/tmp
+/web/sites/*/cache
+
+# Ignore drupal core (if not versioning drupal sources)
+/web/vendor
+/web/core
+/web/modules/README.txt        # BSOH: File is in /web/modules/contrib which is already ignored; kept for GitHub template alignment.
+/web/modules/contrib
+/web/profiles/README.txt       # BSOH: File is in /web/profiles/contrib which is already ignored; kept for GitHub template alignment.
+/web/profiles/contrib
+/web/sites/development.services.yml
+/web/sites/example.settings.local.php
+/web/sites/example.sites.php
+/web/sites/README.txt
+/web/themes/README.txt         # BSOH: File is in /web/themes/contrib which is already ignored; kept for GitHub template alignment.
+/web/themes/contrib
+/web/.csslintrc
+/web/.editorconfig
+/web/.eslintignore
+/web/.eslintrc.json
+/web/.gitattributes
+/web/.htaccess
+/web/.ht.router.php
+/web/autoload.php
+#/web/composer.json            # BSOH: composer.json is in repo root, must be tracked to define project dependencies.
+#/web/composer.lock            # BSOH: composer.lock is in repo root, must be tracked to lock exact dependency versions.
+/web/example.gitignore         # BSOH: File is in /web/core which is already ignored; kept for GitHub template alignment.
+/web/index.php
+/web/INSTALL.txt               # BSOH: File is in /web/core which is already ignored; kept for GitHub template alignment.
+/web/LICENSE.txt               # BSOH: File is in /web/core which is already ignored; kept for GitHub template alignment.
+/web/README.txt                # BSOH: File is in /web/core which is already ignored; kept for GitHub template alignment.
+/web/robots.txt
+/web/update.php                # BSOH: File is in /web/core which is already ignored; kept for GitHub template alignment.
+/web/web.config
+
+# Ignore vendor dependencies and scripts
+/vendor
+/composer.phar
+/composer
+/robo.phar                     # BSOH: Would be installed via Composer vendor/bin; kept for GitHub template alignment.
+/robo                           # BSOH: Would be installed via Composer vendor/bin; kept for GitHub template alignment.
+/drush.phar                     # BSOH: Would be installed via Composer vendor/bin; kept for GitHub template alignment.
+/drush                          # BSOH: Would be installed via Composer vendor/bin; kept for GitHub template alignment.
+/drupal.phar                    # BSOH: Would be installed via Composer vendor/bin; kept for GitHub template alignment.
+/drupal                         # BSOH: Would be installed via Composer vendor/bin; kept for GitHub template alignment.
+
+# --------------------------------------------------------
+# BSOH additions (do NOT alter original template lines above, except via comment+replacement)
+# --------------------------------------------------------
+
+# DDEV granular ignores: keep shared config tracked, exclude local artifacts.
+/.ddev/db_snapshots/           # Local DB snapshots only.
+/.ddev/homeadditions/          # Developer-specific local tweaks.
+/.ddev/commands/host/*         # Local host commands/scripts.
+
+# Keep DDEV core config in Git for reproducibility.
+!.ddev/config.yaml
+!.ddev/docker-compose.*.yaml
+
+# Alternative: Ignore entire .ddev except configs (uncomment to use if no shared DDEV files are needed in Git).
+# .ddev/*
+# !.ddev/config.yaml
+# !.ddev/docker-compose.*.yaml
+
+# IDE/editor and OS junk.
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files.
+*.log
+*.tmp
